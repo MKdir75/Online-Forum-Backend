@@ -12,7 +12,6 @@ EXPIRE_MINUTES = int(os.getenv("JWT_EXPIRE_MINUTES", 30))
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def hash_password(password: str):
-    # bcrypt max 72 bytes support করে
     safe_pw = password.encode("utf-8")[:72].decode("utf-8", errors="ignore")
     return pwd_context.hash(safe_pw)
 
