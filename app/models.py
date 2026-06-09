@@ -34,6 +34,8 @@ class Post(Base):
     forum = relationship("Forum", back_populates="posts")
     comments = relationship("Comment", back_populates="post")
 
+
+
 class Comment(Base):
     __tablename__ = "comments"
     id = Column(Integer, primary_key=True, index=True)

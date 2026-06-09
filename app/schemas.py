@@ -24,13 +24,22 @@ class ForumOut(BaseModel):
     upvotes: int
     class Config:
         orm_mode = True
-
+class PostCreate(BaseModel):
+    content: str
+    user_id: int
+    forum_id: int
+    
 class PostOut(BaseModel):
     id: int
     content: str
     author: UserOut
     class Config:
         orm_mode = True
+
+class CommentCreate(BaseModel):
+    content: str
+    user_id: int
+
 
 class CommentOut(BaseModel):
     id: int

@@ -11,6 +11,13 @@ router = APIRouter(
 def get_forums(db: Session = Depends(get_db)):
     return db.query(models.Forum).all()
 
+@router.get("/{id}")
+def get_forum(id: int, db: Session = Depends(get_db)):
+    forum = db.query(models.Forum).filter(models.Forum.id == id).first()
+    if not forum:
+        return {"error": "Forum not found"}
+    return forum
+
 @router.post("/")
 def create_forum(forum: schemas.ForumCreate, db: Session = Depends(get_db)):
     new_forum = models.Forum(
